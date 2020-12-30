@@ -1,38 +1,48 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+html{
+  min-height: 100%;
+  background-image: linear-gradient(135deg, rgba(255,116,94,0.9), rgba(255,116,94,0.5));
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.center{
   text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.PokemonCard{
+  width: 50%;
+  height: auto;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #eb4034;
+  border-radius: 10%;
+  margin-top: 20px;
+  color: #303030;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.PokemonName{
+  text-align: right;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.PokemonImage{
+  height: 150px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.PokemonInput{
+  display: block;
+  width: 50%;
+  padding: 20px;
+  font-size: 18px;
+  margin: 20px auto;
+  background-color: #fafafa;
+  border: none;
 }
