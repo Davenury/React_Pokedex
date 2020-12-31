@@ -5,6 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 import {Typography} from "@material-ui/core";
+import swal from 'sweetalert';
 
 const Pokedex = require("pokeapi-js-wrapper");
 const P = new Pokedex.Pokedex();
@@ -45,36 +46,48 @@ export class PokemonComponent extends React.Component {
         pokemon: null
     };
 
-    constructor(props) {
-        super(props);
-        console.log(this.props.name)
-    }
-
     componentDidMount() {
+        this.mounted = true;
         this.setPokemon(this.props.name);
     }
 
     setPokemon(name) {
-        this._asyncRequest = P.getPokemonByName(name)
+        this.name = name
+        P.getPokemonByName(name)
             .then((response) => {
-                this._asyncRequest = null;
-                this.setState({pokemon: new Pokemon(response)})
+                if(this.mounted) {
+                    this.setState({pokemon: new Pokemon(response)})
+                }
+            })
+            .catch(() => {
+                this.setState({pokemon: undefined})
             })
     }
 
+
     componentWillUnmount() {
-        if (this._asyncRequest) {
-            this._asyncRequest.cancel();
-        }
+        this.mounted = false;
     }
 
     render() {
+        if(this.state.pokemon === undefined){
+            swal("Looks like we didn't catch this Pokemon either!",
+                "Maybe you've misspelled it's name?", "error")
+            console.log("undefined")
+            this.state.pokemon = null
+            this.props.onError(this.name)
+            return <div></div>;
+        }
         if (this.state.pokemon === null) {
+            console.log("null")
             return <CircularProgress/>
         } else {
+            console.log("ok")
             return (
                 <Card className="PokemonCard">
-                    <CardMedia className="PokemonImage" image={this.state.pokemon.image}/>
+                    <CardMedia
+                        className = "PokemonImage"
+                        image={this.state.pokemon.image}/>
                     <CardContent>
                         <Typography variant={"h5"}>
                             {this.state.pokemon.name}

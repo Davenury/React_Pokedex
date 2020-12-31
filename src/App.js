@@ -3,6 +3,11 @@ import './App.css';
 import {PokemonListComponent} from "./PokemonListComponent";
 import {Button} from "@material-ui/core";
 
+function remove(array, element){
+    const index = array.indexOf(element)
+    if(index !== -1)
+        array.splice(index, 1)
+}
 
 export class App extends React.Component{
 
@@ -15,13 +20,17 @@ export class App extends React.Component{
     }
 
     handleClick () {
-        let pokemonName = document.getElementById("NewPokemonName").value;
+        let pokemonName = document.getElementById("NewPokemonName").value.toLowerCase();
         this.state.pokemons.unshift(pokemonName);
         this.setState(
             { pokemons: this.state.pokemons}
         )
         document.getElementById("NewPokemonName").value = "";
     };
+
+    handleError(pokemonName){
+        //remove(this.state.pokemons, pokemonName)
+    }
 
     render() {
         return (
@@ -40,6 +49,7 @@ export class App extends React.Component{
                 </div>
                 <PokemonListComponent
                     pokemons={this.state.pokemons}
+                    onError={this.handleError}
                 />
             </div>
         );
