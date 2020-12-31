@@ -6,6 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 import {Typography} from "@material-ui/core";
 import swal from 'sweetalert';
+import {PokemonTypeComponent} from "./PokemonTypeComponent";
+import Box from '@material-ui/core/Box'
 
 const Pokedex = require("pokeapi-js-wrapper");
 const P = new Pokedex.Pokedex();
@@ -36,7 +38,8 @@ class Pokemon{
         this._apiResult.types
             .map(type => types.push(type.type.name))
         types = types.map(type => capitalizeFirstLetter(type))
-        return types.join(", ");
+        types = types.map((type, idx) => <Box mr={1} display="inline"><PokemonTypeComponent type={type} key={idx} /></Box>)
+        return types;
     }
 }
 
@@ -69,20 +72,18 @@ export class PokemonComponent extends React.Component {
         this.mounted = false;
     }
 
+
     render() {
         if(this.state.pokemon === undefined){
             swal("Looks like we didn't catch this Pokemon either!",
                 "Maybe you've misspelled it's name?", "error")
-            console.log("undefined")
             this.state.pokemon = null
             this.props.onError(this.name)
             return <div></div>;
         }
         if (this.state.pokemon === null) {
-            console.log("null")
             return <CircularProgress/>
         } else {
-            console.log("ok")
             return (
                 <Card className="PokemonCard">
                     <CardMedia
@@ -93,7 +94,9 @@ export class PokemonComponent extends React.Component {
                             {this.state.pokemon.name}
                         </Typography>
                         <Divider/>
-                        {this.state.pokemon.types}
+                        <Box mt={2}>
+                            {this.state.pokemon.types}
+                        </Box>
                     </CardContent>
                 </Card>
             );

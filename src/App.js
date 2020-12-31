@@ -11,12 +11,14 @@ function remove(array, element){
 
 export class App extends React.Component{
 
+    state = {
+        pokemons : []
+    }
+
     constructor(props) {
         super(props);
-        this.state = {
-            pokemons : []
-        }
         this.handleClick = this.handleClick.bind(this);
+        this.handleError = this.handleError.bind(this);
     }
 
     handleClick () {
@@ -29,7 +31,8 @@ export class App extends React.Component{
     };
 
     handleError(pokemonName){
-        //remove(this.state.pokemons, pokemonName)
+        remove(this.state.pokemons, pokemonName)
+        this.setState({pokemons: this.state.pokemons})
     }
 
     render() {

@@ -34,7 +34,7 @@ body{
 }
 
 .PokemonImage{
-  height: 300px;
+  height: 150px;
 }
 
 .PokemonInput{
@@ -45,4 +45,32 @@ body{
   margin: 20px auto;
   background-color: #fafafa;
   border: none;
+}
+
+.PokemonList{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+.PokemonType{
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 560px) {
+  .PokemonList{
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 960px) {
+  .PokemonList{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 }

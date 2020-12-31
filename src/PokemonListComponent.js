@@ -13,7 +13,7 @@ export class PokemonListComponent extends React.Component{
 
     handleError = (pokemonName) => {
         remove(this.pokemons, pokemonName)
-        this.props.onError(pokemonName)
+        this.props.onError()
     }
 
     render() {
@@ -24,6 +24,6 @@ export class PokemonListComponent extends React.Component{
                     key={pokemonName}
                 onError={this.handleError}/>
             })
-        return elements
+        return <div className="PokemonList">{elements}</div>
     }
 }
