@@ -1,11 +1,22 @@
 import React from 'react';
-import {LinearProgress} from "@material-ui/core";
-import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
+import ProgressBar from "./ProgressBar";
 
 const MIN = 0
 const MAX = 100
 
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
+
+const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const splitStat = (string) => {
+    if(string.includes('-')){
+        let array = string.split('-')
+        return array.join(' ')
+    }
+    return string;
+}
 
 export class StatComponent extends React.Component{
 
@@ -21,24 +32,11 @@ export class StatComponent extends React.Component{
         }
     }
 
-    theme = createMuiTheme({
-        palette:{
-            secondary: {
-                main: this.getColorByStat(this.props.name)
-            }
-        }
-    })
-
     render(){
         return (
             <div>
-                {this.props.name}
-                <MuiThemeProvider theme={this.theme}>
-                <LinearProgress
-                    color="secondary"
-                    variant="determinate"
-                    value={normalise(this.props.base)}/>
-                </MuiThemeProvider>
+                {splitStat(capitalizeFirstLetter(this.props.name))}
+                <ProgressBar bgcolor={this.getColorByStat(this.props.name)} completed={normalise(this.props.base)}/>
             </div>
         )
     }

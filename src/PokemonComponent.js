@@ -127,7 +127,10 @@ export class PokemonComponent extends React.Component {
                             <div onClick={this.handleClick}>
                                 <Card className="PokemonCard">
                                     <CardContent>
-                                        {this.state.pokemon.name}
+                                        <Typography variant={"h5"}>
+                                            {this.state.pokemon.name}
+                                        </Typography>
+                                        <Divider/>
                                         {this.state.pokemon.stats}
                                     </CardContent>
                                 </Card>

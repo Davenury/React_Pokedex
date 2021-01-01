@@ -78,3 +78,8 @@ body{
 .LinearProgress{
   background-color: red;
 }
+
+.Logo{
+    width: 70px;
+    margin: 10px;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
 import {PokemonListComponent} from "./PokemonListComponent";
-import {Button} from "@material-ui/core";
+import {AppBar, Button} from "@material-ui/core";
 
 function remove(array, element){
     const index = array.indexOf(element)
@@ -38,6 +38,12 @@ export class App extends React.Component{
     render() {
         return (
             <div className="App">
+                <AppBar position="static">
+                    <img
+                        className="Logo"
+                        src="https://i.imgur.com/3uepDa1.png"
+                        alt="PokemonLogo"/>
+                </AppBar>
                 <input
                     id="NewPokemonName"
                     placeholder="Enter Pokemon Name"
