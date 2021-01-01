@@ -2,7 +2,7 @@
 
 html{
   min-height: 100%;
-  background-image: linear-gradient(135deg, rgba(255,116,94,0.9), rgba(255,116,94,0.5));
+  background-color: #333333;
 }
 
 body{
@@ -19,7 +19,7 @@ body{
 
 .PokemonCard{
   width: 50%;
-  height: auto;
+  height: 300px;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -73,4 +73,8 @@ body{
     display: grid;
     grid-template-columns: auto auto;
   }
+}
+
+.LinearProgress{
+  background-color: red;
 }

@@ -46,7 +46,7 @@ export class App extends React.Component{
                 <div className="center">
                     <Button
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         size="large"
                         onClick={this.handleClick}>Add Pokemon</Button>
                 </div>
